@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />	
+	<title>FastND</title>
+	<meta http-equiv="X-UA-Compatible" content="chrome=1" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+</head>
+<body>
+
+	<div data-role="page"></div>
+	<!-- Core -->
+	<script type="text/javascript" src="webapp/config.js"></script>
+	<script type="text/javascript" src="steal/steal.js"></script>
+	<script>
+		if(document.documentElement.clientWidth <= 699) {
+			var smallScreen = true;
+			steal('webapp/core/finfore.mobile.js');
+		} else {
+			steal('webapp/core/finfore.js');
+		};
+	</script>
+
+</body>
+</html>

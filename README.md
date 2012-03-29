@@ -11,3 +11,4 @@ using PhoneGap
 ## TODO:
 
 * Social Sign-in, by busting out of iframe
+* Whitelist everything, then try to open _blank links using window.parent.location.href
