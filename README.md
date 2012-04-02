@@ -10,5 +10,5 @@ using PhoneGap
 
 ## TODO:
 
-* Social Sign-in, by busting out of iframe
-* Whitelist everything, then try to open _blank links using window.parent.location.href
+* Make sure there's always a trailing slash on finforeAppUrl - both for web app
+* Remove slash from + '/socialcallback.html' and '/authorize.html'
