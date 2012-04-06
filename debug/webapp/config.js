@@ -6,7 +6,7 @@
 
 var finforeBaseUrl = 'http://api.fastnd.com', // web service url
 	finforeAppUrl = window.location.href, // web app url
-	finforeNative = true;
+	finforeNative = false;
 	
 finforeAppUrl = finforeAppUrl.replace(finforeAppUrl.replace(/^.*[\\\/]/, ''), ''); // remove file.html from path
 
