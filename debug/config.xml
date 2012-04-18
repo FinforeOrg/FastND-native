@@ -13,9 +13,6 @@
 	<!-- No permissions, except Internet required by PhoneGap -->
 	<preference name="permissions" value="none" />
 	
-	<!-- allow externals to open in webview 
-	<access origin="http://192.168.1.4/" /> -->
-	
 	<!-- childbrowser plugin -->
 	<feature name="http://plugins.phonegap.com/ChildBrowser/2.0.0" />
 	

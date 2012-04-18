@@ -9,22 +9,26 @@ finfore.modules.agenda = function() {
 	
 	var init = function($container, options) {
 		
-		var loadData = function(container) {
-			$container.addClass('panel-loading');
+		var loadData = function(params) {
+			params.$container.addClass('panel-loading');
 			
 			var markup = '',
 				ticker_data = '',
-				columnId; // needed for 
+				columnId; // needed for company and portfolios
 			
 			if(options.company) {
+				// company id
+				columnId = options.company._id;
+				
 				if(options.competitor) {
 					ticker_data = options.company.feed_info.company_competitor.competitor_ticker;
+					
+					// different callbackId for competitor calendars
+					// to prevent creating the same callback for multiple calendar columns
+					columnId += 'competitor';
 				} else {
 					ticker_data = options.company.feed_info.company_competitor.company_ticker;					
 				};
-				
-				// company id
-				columnId = options.company._id;
 				
 			} else {
 				
@@ -44,7 +48,6 @@ finfore.modules.agenda = function() {
 				
 				// portfolio id
 				columnId = options.portfolio.id_bare;
-				
 			};			
 			
 			/* If ticker_data is still empty, there was an error with the web service,
@@ -61,7 +64,7 @@ finfore.modules.agenda = function() {
 			
 			// generated callback
 			window[callbackName] = function(response) {
-				agendaCalendarCallback(response, container); // call real callback with params
+				agendaCalendarCallback(response, params); // call real callback with params
 			};
 		
 			// YQL call
@@ -82,7 +85,11 @@ finfore.modules.agenda = function() {
 	
 		var refresh = function(event, params) {
 			empty($('[data-role=content] .events-months-container', $container)[0]);
-			loadData($container);
+			// time to breath
+			// make sure it gets the right container
+			loadData({
+				$container: $container
+			});
 		};
 		
 		var build = function() {	
@@ -128,7 +135,7 @@ finfore.modules.agenda = function() {
 }();
 
 // yql callback
-var agendaCalendarCallback = function(result, $container) {
+var agendaCalendarCallback = function(result, params) {
 	var currentMonth = '',
 		markup = '',
 		calendar = [],
@@ -189,7 +196,7 @@ var agendaCalendarCallback = function(result, $container) {
 		markup = '<table class="events-table"><thead><tr><td class="ui-bar-d">No upcoming events </td></tr></thead></table>';
 	};
 	
-	$(markup).appendTo($('.events-months-container', $container));
+	$(markup).appendTo($('.events-months-container', params.$container));
 	
-	$container.removeClass('panel-loading');
+	params.$container.removeClass('panel-loading');
 };

@@ -202,12 +202,20 @@ finfore.desktop = function() {
 		};
 
 		// load column on show
+		tabs.loadColumns($tabView);
+		
+	};
+	
+	// load column content
+	tabs.loadColumns = function($tabView) {
+	
 		var $panels = $('.panel', $tabView),
-			$panel;
+			$panel,
+			isLoaded;
 		
 		$panels.each(function() {
-			var $panel = $(this),
-				isLoaded = $panel.hasClass('column-loaded');
+			$panel = $(this);
+			isLoaded = $panel.hasClass('column-loaded');
 				
 			if(!isLoaded) {
 				$panel.trigger('refresh', [true]);
@@ -221,12 +229,14 @@ finfore.desktop = function() {
 	 * Remove Tab
 	 */
 	tabs.remove = function($tab) {
-		var $tabView = $($('a', $tab).attr('href'));
+		
+		var companyId = $('a', $tab).attr('href').substr(1),
+			$tabView = $('#' + companyId),
+			$prevTab = $tab.prev('li'),
+			prevCompanyId = $('a', $prevTab).attr('href').substr(1),
+			$prevTabView = $('#' + prevCompanyId + '-tab');		
 		
 		// select previous (or next) tab
-		var $prevTab = $tab.prev('li');
-		var $prevTabView = $('#' + $('a',$prevTab).attr('href').substr(1) + '-tab');		
-		
 		if($('a', $tab).hasClass('ui-btn-active')) {
 			tabs.select($prevTab);
 		};
@@ -234,7 +244,12 @@ finfore.desktop = function() {
 		// remove tab nodes
 		$tab.remove();
 		$tabView.remove();
-			
+		
+		// remove tab button from tab selector
+		$('option[value=' + companyId + '-tab]', nodes.$tabListSelector).remove();
+		// Refresh the <select> menu with the tab removed
+		nodes.$tabListSelector.selectmenu('refresh');
+		
 		navBarWidth -= tabWidth;
 		nodes.$tabList.width(navBarWidth);
 		tabs.refresh();	
@@ -433,7 +448,7 @@ finfore.desktop = function() {
 						
 			var $panelSelector = $('<li><a>' + panelTitle + '</a></li>');
 			$tabSelectorList.append($panelSelector);
-			$tabSelectorList.listview('refresh');			
+			$tabSelectorList.listview('refresh');
 			
 			var $tabSelector;
 			if(data.options.company) {
@@ -496,6 +511,12 @@ finfore.desktop = function() {
 		};
 		
 		finfore.modules[data.type].init($panel, data.options);
+		
+		// if column is created in current tab, load it
+		if(data.options.$tab.parent('.tab').hasClass('active-tab')) {
+			// load column on show
+			tabs.loadColumns(data.options.$tab);
+		};
 	
 	};
 	panels.remove = function(data) {
@@ -518,8 +539,7 @@ finfore.desktop = function() {
 		$heading.append(template);
 		
 		// refresh controlgroup
-		$heading.find("[data-role=controlgroup] a").button();
-		$heading.find("[data-role=controlgroup]").controlgroup();
+		$heading.trigger('create');
 
 		// bind panel manage event		
 		data.options.$node.bind('manage', function() {

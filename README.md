@@ -7,3 +7,5 @@ using PhoneGap
 * Replace all '../../' to '../' in both `production.css` files
 
 ## TODO:
+
+* Use childBrowser with { showLocationBar: true } to open all _blank urls. Will display locationBar on android, and bottom controls are always displayed on iOS.

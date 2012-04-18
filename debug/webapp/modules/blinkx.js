@@ -15,8 +15,11 @@ finfore.modules.blinkx = function() {
 		// replace spaces with +
 		options.company.feed_info.company_competitor.broadcast_keyword = options.company.feed_info.company_competitor.broadcast_keyword.replace(/ /g, '+');
 		
-		// remove &
-		options.company.feed_info.company_competitor.broadcast_keyword = options.company.feed_info.company_competitor.broadcast_keyword.replace(/&/g, '');
+		// remove double quotes
+		options.company.feed_info.company_competitor.broadcast_keyword = options.company.feed_info.company_competitor.broadcast_keyword.replace(/"/g, '');
+		
+		// escape special chars
+		options.company.feed_info.company_competitor.broadcast_keyword = escape(options.company.feed_info.company_competitor.broadcast_keyword);
 		
 		// yql and blinkx api
 		var yqlUrl = 'http://query.yahooapis.com/v1/public/yql',
@@ -149,51 +152,55 @@ var blinkxCallback = function(result, params) {
 	// check for response
 	if(result.query.results && result.query.results.response.responsedata) hits = result.query.results.response.responsedata.hit;
 
-	// cache length
-	entriesLength = hits.length - 1;
+	if(hits) {
 	
-	$.each(hits, function(index, value) {
-		hit = this;
+		// cache length
+		entriesLength = hits.length - 1;
 		
-		date = hit.date;
-		extension = hit.media_format_string;
-		title = hit.title;
-		source = hit.channel;
-		summary = hit.summary;
-		image = hit.staticpreview;
-		url = hit.url;
-		
-		// check date
-		pubDate = new Date(date * 1000);					
-		
-		if(finfore.smallScreen || finfore.tablet) {
-			url = url.replace('http://www.blinkx.com/burl?v=', 'http://m.blinkx.com/info/');
-		};
-		
-		if((params.loadMore === true) || (pubDate > params.date)) {
-			if(index === entriesLength) {
-				markup += '<li class="last-in-group" data-icon="false">';
-			} else {
-				markup += '<li data-icon="false">';				
+		$.each(hits, function(index, value) {
+			hit = this;
+			
+			date = hit.date;
+			extension = hit.media_format_string;
+			title = hit.title;
+			source = hit.channel;
+			summary = hit.summary;
+			image = hit.staticpreview;
+			url = hit.url;
+			
+			// check date
+			pubDate = new Date(date * 1000);					
+			
+			if(finfore.smallScreen || finfore.tablet) {
+				url = url.replace('http://www.blinkx.com/burl?v=', 'http://m.blinkx.com/info/');
 			};
 			
-			markup += '<a href="' + url + '" target="_blank"><abbr>' + source + '</abbr>';
-			markup += '<h3>' + title + '</h3>';
-			
-			markup += '<img src="' + image + '" />';
-			
-			markup += '<p>' + summary.substring(0, 100) + '..' + '</p>';
-			markup += '<abbr>' + pubDate.toUTCString() + '</abbr>';
-			markup += '</a></li>';
-		}
-	});
-	
-	var $loadMoreLi = $('.load-more-entries', params.$container).parents('li').first();
-	var $markup = $(markup);
-	$markup.insertBefore($loadMoreLi);
-	
-	var $listview = $('[data-role=content] ul', params.$container);
-	$listview.listview('refresh');
+			if((params.loadMore === true) || (pubDate > params.date)) {
+				if(index === entriesLength) {
+					markup += '<li class="last-in-group" data-icon="false">';
+				} else {
+					markup += '<li data-icon="false">';				
+				};
+				
+				markup += '<a href="' + url + '" target="_blank"><abbr>' + source + '</abbr>';
+				markup += '<h3>' + title + '</h3>';
+				
+				markup += '<img src="' + image + '" />';
+				
+				markup += '<p>' + summary.substring(0, 100) + '..' + '</p>';
+				markup += '<abbr>' + pubDate.toUTCString() + '</abbr>';
+				markup += '</a></li>';
+			}
+		});
+		
+		var $loadMoreLi = $('.load-more-entries', params.$container).parents('li').first();
+		var $markup = $(markup);
+		$markup.insertBefore($loadMoreLi);
+		
+		var $listview = $('[data-role=content] ul', params.$container);
+		$listview.listview('refresh');
+		
+	};
 	
 	params.$container.removeClass('panel-loading');
 
