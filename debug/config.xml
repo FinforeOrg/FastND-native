@@ -14,7 +14,7 @@
 	<preference name="permissions" value="none" />
 	
 	<!-- childbrowser plugin -->
-	<feature name="http://plugins.phonegap.com/ChildBrowser/2.0.0" />
+	<feature name="http://plugins.phonegap.com/ChildBrowser/2.0.1" />
 	
 	<icon src="images/apple-touch-icon.png" />
 	
