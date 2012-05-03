@@ -20,16 +20,15 @@
 	
 	<icon src="images/fastnd-icon.png" />
 	
-	<!-- iOS; classic iPhone screens, Retina displays, and iPad screens respectively -->
+	<!-- Icons -->
 	<icon src="images/fastnd-icon.png" width="57" height="57"/>
 	<icon src="images/fastnd-icon-72.png" width="72" height="72"/>
 	<icon src="images/fastnd-icon-114.png" width="114" height="114"/>
 
-	<!-- iOS; classic iPhone screens, Retina displays, and iPad screens -->
-	<gap:splash src="images/startup.png"/>
+	<!-- Splash Screens -->
+	<gap:splash src="images/startup.png" />
 	<gap:splash src="images/startup-240.png" width="240" height="320" />
 	<gap:splash src="images/startup-retina.png" width="640" height="960"/>
 	<gap:splash src="images/startup-tablet-portrait.png" width="768" height="1004"/>
 	<gap:splash src="images/startup-tablet-landscape.png" width="1024" height="748"/>
-	
 </widget>
