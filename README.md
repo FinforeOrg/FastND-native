@@ -24,7 +24,7 @@ Details
 The native version of FastND is at it's core the `production` version of the web app, with a few minor differences:
 
 * `index.html` is different, to load the files needed by PhoneGap, and it's plugins.
-* Config `/webapp/config.js` is different, to define the `finforeNative` variable as `true`. We're using this variable to provide different behaviour for the native apps.
+* Config `/webapp/config.js` is different, to define the variables for the native apps.
 * External Urls open inside the app, in a different WebView, by using the [ChildBrowser PhoneGap Plugin](https://github.com/alunny/ChildBrowser/)
 * Social Sign-In also uses the ChildBrowser plugin, to open the 3rd party (Facebook, Google, etc.) urls inside the app. When the ChildBrowser view is redirected to the callback (after Login, for ex.), the app closes it.
 

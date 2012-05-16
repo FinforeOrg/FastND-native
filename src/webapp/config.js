@@ -5,10 +5,11 @@
  */
 
 var finforeBaseUrl = 'http://api.fastnd.com', // web service url
-	finforeAppUrl = window.location.href, // web app url
-	finforeNative = true;
+	finforeAppUrl = 'http://stage.fastnd.com/', // web app url
+	finforeNative = true,
+	finforeNativeUrl = window.location.href; // web app url
 	
-finforeAppUrl = finforeAppUrl.replace(finforeAppUrl.replace(/^.*[\\\/]/, ''), ''); // remove file.html from path
+finforeNativeUrl = finforeNativeUrl.replace(finforeNativeUrl.replace(/^.*[\\\/]/, ''), ''); // remove file.html from path
 
 // Make sure there's a trailing slash
-if(finforeAppUrl.charAt(finforeAppUrl.length - 1) != '/') finforeAppUrl += '/';
+if(finforeNativeUrl.charAt(finforeNativeUrl.length - 1) != '/') finforeNativeUrl += '/';

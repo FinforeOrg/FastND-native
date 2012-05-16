@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<widget xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" id="com.fastnd.fastnd" version="1.0.0">
+<widget xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" id="com.fastnd.fastnd" version="1.0.1">
 	<name>FastND</name>
 
 	<description>
@@ -7,11 +7,13 @@
 	</description>
 
 	<author href="https://fastnd.com" email="info@fastnd.com">
-		Shane Leonard
+		FastND
 	</author>
 
-	<!-- No permissions, except Internet required by PhoneGap -->
 	<preference name="permissions" value="none" />
+	
+	<!-- Allow all requests -->
+	<access origin="*" />
 	
 	<!-- childbrowser plugin -->
 	<feature name="http://plugins.phonegap.com/ChildBrowser/2.0.1" />
@@ -27,8 +29,8 @@
 
 	<!-- Splash Screens -->
 	<gap:splash src="images/startup.png" />
-	<gap:splash src="images/startup-240.png" width="240" height="320" />
+	<gap:splash src="images/startup.png" width="320" height="480" />
 	<gap:splash src="images/startup-retina.png" width="640" height="960"/>
-	<gap:splash src="images/startup-tablet-portrait.png" width="768" height="1004"/>
-	<gap:splash src="images/startup-tablet-landscape.png" width="1024" height="748"/>
+	<gap:splash src="images/startup-tablet-portrait.png" width="768" height="1004" />
+	<gap:splash src="images/startup-tablet-landscape.png" width="1024" height="748" />
 </widget>
