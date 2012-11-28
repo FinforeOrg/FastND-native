@@ -4,8 +4,8 @@
  * Loaded separately, not compressed.
  */
 
-var finforeBaseUrl = 'http://fastnd.com', // web service url
-	finforeAppUrl = 'http://fastnd.com/', // web app url
+var finforeBaseUrl = 'http://inter.fastnd.com', // web service url
+	finforeAppUrl = 'http://inter.fastnd.com', // web app url
 	finforeNative = true,
 	finforeNativeUrl = window.location.href; // web app url
 	
