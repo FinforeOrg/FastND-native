@@ -19,6 +19,7 @@
 	
 	<!-- childbrowser plugin -->
 	<gap:plugin name="ChildBrowser" version="~3" />
+	<preference name="stay-in-webview" value="true" />
 	
 	<preference name="prerendered-icon" value="true" />
 	
