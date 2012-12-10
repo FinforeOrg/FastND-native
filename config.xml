@@ -2,7 +2,7 @@
 <widget xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" id="com.fastnd.fastnd" version="1.2">
 	<name>FastND</name>
 
-	<preference name="phonegap-version" value="2.1.0" />
+	<preference name="phonegap-version" value="2.2.0" />
 	
 	<description>
 		FastND is an application for finance professionals, giving you access to news and data you require.
