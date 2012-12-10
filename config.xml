@@ -18,8 +18,9 @@
 	<access origin="*" />
 	
 	<!-- childbrowser plugin -->
+	<preference name="stay-in-webview" value="true" />
 	<gap:plugin name="ChildBrowser" version="~3" />
-	<!-- <preference name="stay-in-webview" value="true" /> -->
+	
 	<!-- <preference name="orientation" value="default" /> -->
 	<preference name="prerendered-icon" value="true" />
 	
