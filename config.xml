@@ -19,8 +19,8 @@
 	
 	<!-- childbrowser plugin -->
 	<gap:plugin name="ChildBrowser" version="~3" />
-	<preference name="stay-in-webview" value="true" />
-	<preference name="orientation" value="default" />
+	<!-- <preference name="stay-in-webview" value="true" /> -->
+	<!-- <preference name="orientation" value="default" /> -->
 	<preference name="prerendered-icon" value="true" />
 	
 	<icon src="images/fastnd-icon.png" />
