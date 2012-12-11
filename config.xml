@@ -18,7 +18,7 @@
 	<access origin="*" />
 	
 	<!-- childbrowser plugin -->
-	<preference name="stay-in-webview" value="true" />
+	<preference name="stay-in-webview" value="false" />
 	<gap:plugin name="ChildBrowser" version="~3" />
 	
 	<!-- <preference name="orientation" value="default" /> -->
